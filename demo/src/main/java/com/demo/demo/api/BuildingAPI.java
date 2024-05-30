@@ -32,7 +32,7 @@ public class BuildingAPI {
     private Object createBuildings(@RequestBody BuildingDTO buildingDTO){
 //      System.out.println(buildingDTO.getFirst().getName() + " " + buildingDTO.getFirst().getDistrictId());
         validate(buildingDTO);
-        System.out.println("ok");
+        System.out.println("kkk");
         return "OK";
     }
 }
