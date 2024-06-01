@@ -18,14 +18,12 @@ import java.util.Map;
 public class BuildingAPI {
     @Autowired
     private BuildingService buildingService;
-    @Autowired
-    private BuildingRepository buildingRepository;
     @GetMapping("/api/buildings")
     private Object getBuildings(@RequestParam(required = false) Map<Object, Object> attribute,
                                 @RequestParam(required = false) List<String> typeCode){
 //        List<BuildingResponseDTO> buildingResponseDTOS = buildingService.findAll(nameBuilding, numberOfBasement);
-        List<BuildingEntity> results = new ArrayList<>();
-        results = buildingRepository.findAll(attribute, typeCode);
+        List<BuildingResponseDTO> results = new ArrayList<>();
+        results = buildingService.findAll(attribute, typeCode);
         return results;
     }
 

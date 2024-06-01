@@ -18,23 +18,32 @@ public class BuildingRepositoryImpl implements BuildingRepository {
     @Override
     public List<BuildingEntity> findAll(Map<Object, Object> attribute, List<String> typeCode) {
         List<BuildingEntity> results = new ArrayList<>();
+        int dem = 0;
         String sql = "SELECT b.* FROM estatebasic.building b\n";
-        sql += joinProcess(attribute, typeCode) + queryProcess(attribute, typeCode);
+        sql += joinProcess(attribute, typeCode) + queryProcess(attribute, typeCode) + "\nGROUP BY b.id";
 
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(sql);
         ){
             while (rs.next()){
+                dem ++;
                 BuildingEntity buildingEntity = new BuildingEntity();
+                buildingEntity.setId(rs.getLong("id"));
                 buildingEntity.setName(rs.getString("name"));
                 buildingEntity.setDistrictId(rs.getLong("districtid"));
                 buildingEntity.setStreet(rs.getString("street"));
                 buildingEntity.setWard(rs.getString("ward"));
+                buildingEntity.setNumberOfBasement(rs.getLong("numberofbasement"));
+                buildingEntity.setManagerName(rs.getString("managername"));
+                buildingEntity.setManagerPhone(rs.getString("managerphonenumber"));
+                buildingEntity.setFloorArea(rs.getLong("floorarea"));
+                buildingEntity.setBrokerageFee(rs.getLong("brokeragefee"));
                 buildingEntity.setRentPrice(rs.getLong("rentprice"));
                 results.add(buildingEntity);
             }
-            System.out.println("Ket noi robot thanh cong");
+            System.out.println(sql);
+            System.out.println(dem);
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println(sql);
