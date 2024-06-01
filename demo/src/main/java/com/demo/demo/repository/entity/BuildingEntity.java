@@ -8,9 +8,15 @@ public class BuildingEntity {
     private String ward;
     private String street;
     private Long districtId;
+    private Long numberOfBasement;
+    private String managerName;
+    private String managerPhone;
+    private Long floorArea;
+    private Long freeArea;
+    private Long brokerageFee;
     private Long rentPrice;
     private List<String> typeCode;
-    private Long numberOfBasement;
+
 
     public BuildingEntity() {
     }
@@ -78,5 +84,45 @@ public class BuildingEntity {
 
     public void setTypeCode(List<String> typeCode) {
         this.typeCode = typeCode;
+    }
+
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
+    }
+
+    public String getManagerPhone() {
+        return managerPhone;
+    }
+
+    public void setManagerPhone(String managerPhone) {
+        this.managerPhone = managerPhone;
+    }
+
+    public Long getFloorArea() {
+        return floorArea;
+    }
+
+    public void setFloorArea(Long floorArea) {
+        this.floorArea = floorArea;
+    }
+
+    public Long getFreeArea() {
+        return freeArea;
+    }
+
+    public void setFreeArea(Long freeArea) {
+        this.freeArea = freeArea;
+    }
+
+    public Long getBrokerageFee() {
+        return brokerageFee;
+    }
+
+    public void setBrokerageFee(Long brokerageFee) {
+        this.brokerageFee = brokerageFee;
     }
 }

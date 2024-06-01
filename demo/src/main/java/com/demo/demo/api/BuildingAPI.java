@@ -3,23 +3,30 @@ package com.demo.demo.api;
 import com.demo.demo.customexception.FieldRequiredException;
 import com.demo.demo.dto.BuildingDTO;
 import com.demo.demo.dto.response.BuildingResponseDTO;
+import com.demo.demo.repository.BuildingRepository;
+import com.demo.demo.repository.entity.BuildingEntity;
 import com.demo.demo.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 //@Controller //dùng để chuyển một java class thành 1 restful api web service
 @RestController // = @Controller + @RespondBody
 public class BuildingAPI {
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private BuildingRepository buildingRepository;
     @GetMapping("/api/buildings")
-    private Object getBuildings(@RequestParam(name = "name", required = false)String nameBuilding,
-                                @RequestParam(name = "numberofbasement", required = false) Long numberOfBasement){
-        List<BuildingResponseDTO> buildingResponseDTOS = buildingService.findAll(nameBuilding, numberOfBasement);
-        return buildingResponseDTOS;
+    private Object getBuildings(@RequestParam(required = false) Map<Object, Object> attribute,
+                                @RequestParam(required = false) List<String> typeCode){
+//        List<BuildingResponseDTO> buildingResponseDTOS = buildingService.findAll(nameBuilding, numberOfBasement);
+        List<BuildingEntity> results = new ArrayList<>();
+        results = buildingRepository.findAll(attribute, typeCode);
+        return results;
     }
 
     private void validate(BuildingDTO buildingDTO){
