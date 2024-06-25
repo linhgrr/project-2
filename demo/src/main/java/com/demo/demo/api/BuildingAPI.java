@@ -20,8 +20,7 @@ public class BuildingAPI {
     private BuildingService buildingService;
     @GetMapping("/api/buildings")
     private Object getBuildings(@RequestParam(required = false) Map<Object, Object> attribute,
-                                @RequestParam(required = false) List<String> typeCode){
-//        List<BuildingResponseDTO> buildingResponseDTOS = buildingService.findAll(nameBuilding, numberOfBasement);
+                                @RequestParam(required = false, name = "typeCode") List<String> typeCode){
         List<BuildingResponseDTO> results = new ArrayList<>();
         results = buildingService.findAll(attribute, typeCode);
         return results;
@@ -35,7 +34,6 @@ public class BuildingAPI {
 
     @PostMapping("/api/buildings")
     private Object createBuildings(@RequestBody BuildingDTO buildingDTO){
-//      System.out.println(buildingDTO.getFirst().getName() + " " + buildingDTO.getFirst().getDistrictId());
         validate(buildingDTO);
         System.out.println("ok");
         return "OK";

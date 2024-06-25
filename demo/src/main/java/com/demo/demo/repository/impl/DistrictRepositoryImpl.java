@@ -26,7 +26,6 @@ public class DistrictRepositoryImpl implements DistrictRepository {
                 results.setCode(rs.getString("code"));
                 results.setName(rs.getString("name"));
             }
-            System.out.println("Ket noi robot thanh cong");
         }catch (SQLException e){
             e.printStackTrace();
         }

@@ -33,7 +33,6 @@ public class RentAreaRepositoryImpl implements RentAreaRepository {
                 rentAreaEntity.setModifiedBy(rs.getString("modifiedby"));
                 results.add(rentAreaEntity);
             }
-            System.out.println("Ket noi robot thanh cong");
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println(sql);
